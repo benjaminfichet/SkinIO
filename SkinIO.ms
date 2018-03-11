@@ -37,7 +37,8 @@ struct SkinIOHelpers (
 
 
 
-
+-- Class: SkinIOBaseRequest
+-- The base class for the Input/Output requests. Do not instantiate.
 struct SkinIOBaseRequest (
 	__child     = undefined,
 	node        = undefined,
@@ -93,6 +94,10 @@ struct SkinIOBaseRequest (
 
 	on create do ()
 )
+
+
+-- Class: SkinIOExportRequest
+-- The export request class
 struct SkinIOExportRequest (
 	_super      = undefined, -- <<Super>> class
 
@@ -144,6 +149,14 @@ struct SkinIOExportRequest (
 )
 
 
+-- Class: SkinIOImportRequest
+-- The import request class
+struct SkinIOImportRequest (
+	on create do ()
+)
+
+-- Class: SkinIOExport
+-- The skin exporter
 struct SkinIOExport (
 	fn export request = (
 		local ret = (iskindof request SkinIOExportRequest) and (request.validate()) -- SkinIOExport works with a SkinIOExportRequest
@@ -227,20 +240,20 @@ struct SkinIOExport (
 	on create do ()
 )
 
-
-
-struct SkinIOImportRequest (
-	on create do ()
-)
-
--- 
+-- Class: SkinIOImport
+-- The skin importer 
 struct SkinIOImport (
 	on create do ()
 )
 
+
+-- Class: SkinIO
+-- The main class to work with.
 struct SkinIO (
 	on create do ()
 )
+
+
 
 
 export_request = SkinIOExportRequest()-- export_packed:true

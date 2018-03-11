@@ -1,0 +1,1 @@
+NDFramePage.OnPageTitleLoaded("MaxscriptClass:SkinIOImportRequest","SkinIOImportRequest");NDSummary.OnSummaryLoaded("MaxscriptClass:SkinIOImportRequest",[["Maxscript","Maxscript"]],[["Classes","Class"]],[[6,0,0,"SkinIOImportRequest"]]);

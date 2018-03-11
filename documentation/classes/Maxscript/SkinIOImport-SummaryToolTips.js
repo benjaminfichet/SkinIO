@@ -1,0 +1,1 @@
+NDSummary.OnToolTipsLoaded("MaxscriptClass:SkinIOImport",{8:"<div class=\"NDToolTip TClass LMaxscript\"><div class=\"TTSummary\">The skin importer</div></div>"});

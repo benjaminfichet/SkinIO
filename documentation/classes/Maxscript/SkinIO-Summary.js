@@ -1,0 +1,1 @@
+NDFramePage.OnPageTitleLoaded("MaxscriptClass:SkinIO","SkinIO");NDSummary.OnSummaryLoaded("MaxscriptClass:SkinIO",[["Maxscript","Maxscript"]],[["Classes","Class"]],[[9,0,0,"SkinIO"]]);

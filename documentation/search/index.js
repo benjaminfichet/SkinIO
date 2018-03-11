@@ -1,0 +1,1 @@
+NDSearch.OnPrefixIndexLoaded(["sel","ski"]);
