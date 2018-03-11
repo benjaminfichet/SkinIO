@@ -72,6 +72,8 @@
 	By using the same <<ret>> keyword, and the same pattern through functions, we are able to transmit ret(s), data(s) and reason(s) from as deep as possible. == greater debug
 
 	It also helps the use of implicit returns, which don't  use C++ exceptions, meaning faster code!
+
+	You can allocate a SkinIOReturn using the keyword *SkiRet*
 */
 struct SkinIOReturn (
 
@@ -88,4 +90,4 @@ struct SkinIOReturn (
     -- public - In case the ret code is set to false, then maybe the function did leave a reason for the fail ? It is it here. 
 	reason = undefined
 )
-
+SkiRet = SkinIOReturn
