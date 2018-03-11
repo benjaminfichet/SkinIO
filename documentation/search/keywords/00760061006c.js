@@ -1,1 +1,1 @@
-NDSearch.OnPrefixDataLoaded("val",["Function"],[["validate",,[["SkinIOExportRequest",,,,0,"File:SkinIO.ms:SkinIOExportRequest.validate","MaxscriptClass:SkinIOExportRequest:validate"]]]]);
+NDSearch.OnPrefixDataLoaded("val",["Function"],[["validate",,[["SkinIOExportRequest","fn validate =",,"fn validate=",0,"File:SkinIO.ms:SkinIOExportRequest.fn_validate=","MaxscriptClass:SkinIOExportRequest:fn_validate="]]]]);

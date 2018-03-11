@@ -1,1 +1,1 @@
-NDSearch.OnPrefixDataLoaded("pat",["Function"],[["path",,[["SkinIOExportRequest","_findExportPath path",,,0,"File:SkinIO.ms:SkinIOExportRequest._findExportPath_path","MaxscriptClass:SkinIOExportRequest:_findExportPath_path"]]]]);
+NDSearch.OnPrefixDataLoaded("pat",["Function"],[["path",,[["SkinIOExportRequest","fn _loadExportPath path =",,"fn _loadexportpath path=",0,"File:SkinIO.ms:SkinIOExportRequest.fn_loadExportPath_path=","MaxscriptClass:SkinIOExportRequest:fn_loadExportPath_path="]]]]);

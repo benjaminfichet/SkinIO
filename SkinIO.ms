@@ -56,7 +56,7 @@ struct SkinIOBaseRequest (
 		(vnode and vskin and vsameNode)
 	),
 
-	fn _findSkinMod skin_name:undefined = (
+	fn _loadSkinMod skin_name:undefined = (
 		local ret = false
 		if (isValidNode node) then (
 			local sknName = if skin_name != undefined then (skin_name as name) else (#Skin)
@@ -101,7 +101,7 @@ struct SkinIOBaseRequest (
 struct SkinIOExportRequest (
 
 	-- Variable: _super
-    -- private - The baseclass, of type <<SkinIOBaseRequest>>
+    -- private - The baseclass, of type <<SkinIOBaseRequest>>, providing common methods for requests
 	_super        = undefined, -- <<Super>> class
 
 	-- Variable: export_path
@@ -112,44 +112,87 @@ struct SkinIOExportRequest (
     -- deprecated - Do we pack our export ?
 	export_packed = undefined,
 
-	/* Function: getSkinMod
+
+	/* Function: fn init node skin_name:undefined export_path:undefined = (..)
+
+		Inits a request. The only required parameter is a node. You can also pass the <<skin_name:>> and <<export_path:>> parameters.
+
+		Parameters:
+
+			- node  The node to load a skinh modifier from
+			- skin_name: If given we will select this skin modifier
+			- export_path: If given this is the directory where we will export our skin to
+
+		Return:
+			True or False
+	*/
+	fn init node skin_name:undefined export_path:undefined = (
+		local ret = false
+		if (isValidNode node) then (
+			this._super.node = node
+			ret = this._super._loadSkinMod skin_name:skin_name
+
+			if ret then (
+				ret = this._loadExportPath export_path
+			)
+		)
+		ret
+	),
+
+
+	/* Function: fn validate = (..)
+
+	   Validates this request by using the _super validator. Checks that : 
+
+	   		- the node is valid
+	   		- the skin is valid
+	   		- the skin is holded by the same node 
+
+	   	Return:
+
+	   		True or False
+	*/
+	fn validate = (this._super.validate()),
+
+
+	/* Function: fn getSkinMod = (..)
 
 	   Returns the Skin modifier associated with this request.
 	*/
 	fn getSkinMod = (this._super.skinmod),
 
-	/* Function: getNode
+	/* Function: fn getNode = (..)
 
 	   Returns the Node associated with this request.
 	*/
 	fn getNode    = (this._super.node),
 	
-	/* Function: getEnvPath
+	/* Function: fn getEnvPath = (..)
 
 	   Returns the path for this's env file
 	*/
-	fn getEnvPath              = ((this.getPathWithoutExtension()) + ".env"),
+	fn getEnvPath              = ((this.getPath()) + ".env"),
 	
-	/* Function: getIniPath
+	/* Function: fn getIniPath = (..)
 
 	   Returns the path for this's ini file
 	*/
-	fn getIniPath              = ((this.getPathWithoutExtension()) + ".ini"),
+	fn getIniPath              = ((this.getPath()) + ".ini"),
 	
-	/* Function: getZipPath
+	/* Function: fn getZipPath = (..)
 
 	   Returns the path for this's zip file
 	*/
-	fn getZipPath              = ((this.getPathWithoutExtension()) + ".zip"),
+	fn getZipPath              = ((this.getPath()) + ".zip"),
 
 
-	/* Function: getPathWithoutExtension
+	/* Function: fn getPath = (..)
 
 	   Returns the path for this's without any extension
 	*/
-	fn getPathWithoutExtension = (this.export_path + (this.getFilename())),
+	fn getPath = (this.export_path + (this.getFilename())),
 
-	/* Function: getFilename
+	/* Function: fn getFilename = (..)
 
 	   Returns the filename created for this request
 	*/
@@ -159,29 +202,14 @@ struct SkinIOExportRequest (
 		ret
 	),
 
-	/* Function: validate
+	
+	
 
-	   Validates this request by using the _super validator
-	*/
-	fn validate = (this._super.validate()),
-	fn init node skin_name:undefined export_path:undefined = (
-		local ret = false
-		if (isValidNode node) then (
-			this._super.node = node
-			ret = this._super._findSkinMod skin_name:skin_name
-
-			if ret then (
-				ret = this._findExportPath export_path
-			)
-		)
-		ret
-	),
-
-	/* Function: _findExportPath path
+	/* Function: fn _loadExportPath path = (..)
 
 	   Sets export_path after validating it. 
 	*/
-	fn _findExportPath path = (
+	fn _loadExportPath path = (
 		local ret = (classof(path) == String) or path == undefined
 		if ret then (
 			local dp = path
@@ -264,7 +292,7 @@ struct SkinIOExport (
 
 	fn _zipExport request = (
 		local ret = false
-		local tmp_folder_name = request.getPathWithoutExtension()
+		local tmp_folder_name = request.getPath()
 		
 		if (makeDir tmp_folder_name) then (
 			local newenv = (tmp_folder_name + @"\" + request.getFilename() + ".env")

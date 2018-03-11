@@ -36,9 +36,9 @@
  <div class="CTitle">Variables</div>
 </div>
 
-<a name="SkinIOExportRequest._super"></a><a name="Topic12"></a><div class="CTopic TVariable LMaxscript">
+<a name="SkinIOExportRequest._super"></a><a name="Topic24"></a><div class="CTopic TVariable LMaxscript">
  <div class="CTitle">_super</div>
- <div class="CBody"><table class="CDefinitionList"><tr><td class="CDLEntry">private</td><td class="CDLDefinition"><p>The baseclass, of type &lt;&lt;SkinIOBaseRequest&gt;&gt;</p></td></tr></table></div>
+ <div class="CBody"><table class="CDefinitionList"><tr><td class="CDLEntry">private</td><td class="CDLDefinition"><p>The baseclass, of type &lt;&lt;SkinIOBaseRequest&gt;&gt;, providing common methods for requests</p></td></tr></table></div>
 </div>
 
 <a name="SkinIOExportRequest.export_path"></a><a name="Topic13"></a><div class="CTopic TVariable LMaxscript">
@@ -55,48 +55,53 @@
  <div class="CTitle">Functions</div>
 </div>
 
-<a name="SkinIOExportRequest.getSkinMod"></a><a name="Topic15"></a><div class="CTopic TFunction LMaxscript">
- <div class="CTitle">getSkinMod</div>
+<a name="SkinIOExportRequest.fn_init_node_skin_name_undefined_export_path_undefined="></a><a name="Topic22"></a><div class="CTopic TFunction LMaxscript">
+ <div class="CTitle"><span class="Qualifier">fn init node skin_name:undefined export_path:undefined = (.&#8203;.</span>&#8203;)</div>
+ <div class="CBody"><p>Inits a request. The only required parameter is a node. You can also pass the &lt;&lt;skin_name:&gt;&gt; and &lt;&lt;export_path:&gt;&gt; parameters.</p><div class="CHeading">Parameters</div><ul><li><p>node&nbsp; The node to load a skinh modifier from</p></li><li><p>skin_name: If given we will select this skin modifier</p></li><li><p>export_path: If given this is the directory where we will export our skin to</p></li></ul><div class="CHeading">Return</div><p>True or False</p></div>
+</div>
+
+<a name="SkinIOExportRequest.fn_validate="></a><a name="Topic12"></a><div class="CTopic TFunction LMaxscript">
+ <div class="CTitle"><span class="Qualifier">fn validate = (.&#8203;.</span>&#8203;)</div>
+ <div class="CBody"><p>Validates this request by using the _super validator. Checks that :</p><ul><li><p>the node is valid</p></li><li><p>the skin is valid</p></li><li><p>the skin is holded by the same node</p></li></ul><div class="CHeading">Return</div><p>True or False</p></div>
+</div>
+
+<a name="SkinIOExportRequest.fn_getSkinMod="></a><a name="Topic23"></a><div class="CTopic TFunction LMaxscript">
+ <div class="CTitle"><span class="Qualifier">fn getSkinMod = (.&#8203;.</span>&#8203;)</div>
  <div class="CBody"><p>Returns the Skin modifier associated with this request.</p></div>
 </div>
 
-<a name="SkinIOExportRequest.getNode"></a><a name="Topic16"></a><div class="CTopic TFunction LMaxscript">
- <div class="CTitle">getNode</div>
+<a name="SkinIOExportRequest.fn_getNode="></a><a name="Topic27"></a><div class="CTopic TFunction LMaxscript">
+ <div class="CTitle"><span class="Qualifier">fn getNode = (.&#8203;.</span>&#8203;)</div>
  <div class="CBody"><p>Returns the Node associated with this request.</p></div>
 </div>
 
-<a name="SkinIOExportRequest.getEnvPath"></a><a name="Topic17"></a><div class="CTopic TFunction LMaxscript">
- <div class="CTitle">getEnvPath</div>
+<a name="SkinIOExportRequest.fn_getEnvPath="></a><a name="Topic28"></a><div class="CTopic TFunction LMaxscript">
+ <div class="CTitle"><span class="Qualifier">fn getEnvPath = (.&#8203;.</span>&#8203;)</div>
  <div class="CBody"><p>Returns the path for this's env file</p></div>
 </div>
 
-<a name="SkinIOExportRequest.getIniPath"></a><a name="Topic18"></a><div class="CTopic TFunction LMaxscript">
- <div class="CTitle">getIniPath</div>
+<a name="SkinIOExportRequest.fn_getIniPath="></a><a name="Topic29"></a><div class="CTopic TFunction LMaxscript">
+ <div class="CTitle"><span class="Qualifier">fn getIniPath = (.&#8203;.</span>&#8203;)</div>
  <div class="CBody"><p>Returns the path for this's ini file</p></div>
 </div>
 
-<a name="SkinIOExportRequest.getZipPath"></a><a name="Topic19"></a><div class="CTopic TFunction LMaxscript">
- <div class="CTitle">getZipPath</div>
+<a name="SkinIOExportRequest.fn_getZipPath="></a><a name="Topic30"></a><div class="CTopic TFunction LMaxscript">
+ <div class="CTitle"><span class="Qualifier">fn getZipPath = (.&#8203;.</span>&#8203;)</div>
  <div class="CBody"><p>Returns the path for this's zip file</p></div>
 </div>
 
-<a name="SkinIOExportRequest.getPathWithoutExtension"></a><a name="Topic20"></a><div class="CTopic TFunction LMaxscript">
- <div class="CTitle">getPathWithoutExtension</div>
+<a name="SkinIOExportRequest.fn_getPath="></a><a name="Topic18"></a><div class="CTopic TFunction LMaxscript">
+ <div class="CTitle"><span class="Qualifier">fn getPath = (.&#8203;.</span>&#8203;)</div>
  <div class="CBody"><p>Returns the path for this's without any extension</p></div>
 </div>
 
-<a name="SkinIOExportRequest.getFilename"></a><a name="Topic21"></a><div class="CTopic TFunction LMaxscript">
- <div class="CTitle">getFilename</div>
+<a name="SkinIOExportRequest.fn_getFilename="></a><a name="Topic16"></a><div class="CTopic TFunction LMaxscript">
+ <div class="CTitle"><span class="Qualifier">fn getFilename = (.&#8203;.</span>&#8203;)</div>
  <div class="CBody"><p>Returns the filename created for this request</p></div>
 </div>
 
-<a name="SkinIOExportRequest.validate"></a><a name="Topic22"></a><div class="CTopic TFunction LMaxscript">
- <div class="CTitle">validate</div>
- <div class="CBody"><p>Validates this request by using the _super validator</p></div>
-</div>
-
-<a name="SkinIOExportRequest._findExportPath_path"></a><a name="Topic23"></a><div class="CTopic TFunction LMaxscript">
- <div class="CTitle">_findExportPath path</div>
+<a name="SkinIOExportRequest.fn_loadExportPath_path="></a><a name="Topic17"></a><div class="CTopic TFunction LMaxscript">
+ <div class="CTitle"><span class="Qualifier">fn _loadExportPath path = (.&#8203;.</span>&#8203;)</div>
  <div class="CBody"><p>Sets export_path after validating it.</p></div>
 </div>
 

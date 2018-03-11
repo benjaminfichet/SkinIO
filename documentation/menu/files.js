@@ -1,1 +1,1 @@
-NDMenu.OnSectionLoaded("files.js",[[1,"SkinIO.ms"]]);
+NDMenu.OnSectionLoaded("files.js",[[1,"SkinIO.ms"],[1,"SkinIOReturn.ms"]]);
