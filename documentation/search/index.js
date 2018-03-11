@@ -1,1 +1,1 @@
-NDSearch.OnPrefixIndexLoaded(["sel","ski"]);
+NDSearch.OnPrefixIndexLoaded(["_fi","_su","exp","get","pat","sel","ski","val"]);

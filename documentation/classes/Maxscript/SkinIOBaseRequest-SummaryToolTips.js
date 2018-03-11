@@ -1,1 +1,1 @@
-NDSummary.OnToolTipsLoaded("MaxscriptClass:SkinIOBaseRequest",{4:"<div class=\"NDToolTip TClass LMaxscript\"><div class=\"TTSummary\">The base class for the Input/Output requests</div></div>"});
+NDSummary.OnToolTipsLoaded("MaxscriptClass:SkinIOBaseRequest",{10:"<div class=\"NDToolTip TClass LMaxscript\"><div class=\"TTSummary\">The base class for the Input/Output requests. Do not instantiate.</div></div>"});

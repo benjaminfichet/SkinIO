@@ -99,25 +99,70 @@ struct SkinIOBaseRequest (
 -- Class: SkinIOExportRequest
 -- The export request class
 struct SkinIOExportRequest (
-	_super      = undefined, -- <<Super>> class
 
+	-- Variable: _super
+    -- private - The baseclass, of type <<SkinIOBaseRequest>>
+	_super        = undefined, -- <<Super>> class
+
+	-- Variable: export_path
+    -- public - Where we will export our Skin
 	export_path   = undefined,
+
+	-- Variable: export_packed
+    -- deprecated - Do we pack our export ?
 	export_packed = undefined,
 
+	/* Function: getSkinMod
+
+	   Returns the Skin modifier associated with this request.
+	*/
 	fn getSkinMod = (this._super.skinmod),
+
+	/* Function: getNode
+
+	   Returns the Node associated with this request.
+	*/
 	fn getNode    = (this._super.node),
 	
+	/* Function: getEnvPath
+
+	   Returns the path for this's env file
+	*/
 	fn getEnvPath              = ((this.getPathWithoutExtension()) + ".env"),
+	
+	/* Function: getIniPath
+
+	   Returns the path for this's ini file
+	*/
 	fn getIniPath              = ((this.getPathWithoutExtension()) + ".ini"),
+	
+	/* Function: getZipPath
+
+	   Returns the path for this's zip file
+	*/
 	fn getZipPath              = ((this.getPathWithoutExtension()) + ".zip"),
+
+
+	/* Function: getPathWithoutExtension
+
+	   Returns the path for this's without any extension
+	*/
 	fn getPathWithoutExtension = (this.export_path + (this.getFilename())),
 
+	/* Function: getFilename
+
+	   Returns the filename created for this request
+	*/
 	fn getFilename = (
 		local ret = this.validate()
 		if ret then (ret = this._super._makeFilenameFromThis())
 		ret
 	),
 
+	/* Function: validate
+
+	   Validates this request by using the _super validator
+	*/
 	fn validate = (this._super.validate()),
 	fn init node skin_name:undefined export_path:undefined = (
 		local ret = false
@@ -132,6 +177,10 @@ struct SkinIOExportRequest (
 		ret
 	),
 
+	/* Function: _findExportPath path
+
+	   Sets export_path after validating it. 
+	*/
 	fn _findExportPath path = (
 		local ret = (classof(path) == String) or path == undefined
 		if ret then (
