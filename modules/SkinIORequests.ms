@@ -1,12 +1,34 @@
 -- Class: SkinIOBaseRequest
 -- The base class for the Input/Output requests. Do not instantiate.
 struct SkinIOBaseRequest (
-	__child     = undefined,
+
+	-- Variable: node
+    -- public - The node associated with the request
 	node        = undefined,
+
+
+	-- Variable: skinmod
+    -- public - The skin modifier associated with the request
 	skinmod     = undefined,
+
+	-- Private stuff..
+	__child     = undefined,
 	__timestamp = undefined,
 	__packed_extension = ".zip",
 
+
+	/* Function: fn validate = (..)
+
+	   Validates this request by using the super validator. Checks that : 
+
+	   		- the node is valid
+	   		- the skin is valid
+	   		- the skin is holded by the same node 
+
+	   	Return:
+
+	   		True or False
+	*/
 	fn validate = (
 		local vnode     = (isValidNode node)
 		local vskin     = ((classof skinmod) == Skin)
@@ -17,6 +39,16 @@ struct SkinIOBaseRequest (
 		(vnode and vskin and vsameNode)
 	),
 
+
+	/* Function: fn _loadSkinMod skin_name:undefined = (..)
+
+	   Loads this.skinmod with node.modifiers[skin_name] if skin_name: is given else with node.modifiers[#Skin]
+
+
+	   	Return:
+
+	   		True or False
+	*/
 	fn _loadSkinMod skin_name:undefined = (
 		local ret = false
 		if (isValidNode node) then (
@@ -27,6 +59,14 @@ struct SkinIOBaseRequest (
 		ret
 	),
 
+	/* Function: fn _makeFilenameFromThis = (..)
+
+	   Makes a filename for the giver node, skin modifier, and registered timestamp.
+
+	   	Return:
+
+	   		False or Filename
+	*/
 	fn _makeFilenameFromThis = (
 		local ret = false
 		local fname = ""
@@ -61,10 +101,13 @@ struct SkinIOBaseRequest (
 -- The export request class
 struct SkinIOExportRequest (
 
-	-- Variable: _super
+	-- Variable: super
     -- private - The baseclass, of type <<SkinIOBaseRequest>>, providing common methods for requests
-	_super        = undefined, -- <<Super>> class
+	super        = undefined, -- <<Super>> class
 
+
+
+	private
 	-- Variable: export_path
     -- public - Where we will export our Skin
 	export_path   = undefined,
@@ -74,6 +117,9 @@ struct SkinIOExportRequest (
 	export_packed = undefined,
 
 
+
+
+	public
 	/* Function: fn init node skin_name:undefined export_path:undefined = (..)
 
 		Inits a request. The only required parameter is a node. You can also pass the <<skin_name:>> and <<export_path:>> parameters.
@@ -91,20 +137,19 @@ struct SkinIOExportRequest (
 		local ret = SkinIOReturn ret:(isValidNode node)
 		if ret.ret then (
 
-			this._super.node = node
+			this.super.node = node
 			
-			ret = this._super._loadSkinMod skin_name:skin_name
+			ret = this.super._loadSkinMod skin_name:skin_name
 			if ret then (
-				ret = this._loadExportPath export_path
+				ret = this.setExportPath export_path
 			)
 		)else(ret.reason = @"The node in not valid!")
 		ret
 	),
 
-
 	/* Function: fn validate = (..)
 
-	   Validates this request by using the _super validator. Checks that : 
+	   Validates this request by using the super validator. Checks that : 
 
 	   		- the node is valid
 	   		- the skin is valid
@@ -114,20 +159,19 @@ struct SkinIOExportRequest (
 
 	   		True or False
 	*/
-	fn validate = (this._super.validate()),
-
+	fn validate = (this.super.validate()),
 
 	/* Function: fn getSkinMod = (..)
 
 	   Returns the Skin modifier associated with this request.
 	*/
-	fn getSkinMod = (this._super.skinmod),
+	fn getSkinMod = (this.super.skinmod),
 
 	/* Function: fn getNode = (..)
 
 	   Returns the Node associated with this request.
 	*/
-	fn getNode    = (this._super.node),
+	fn getNode    = (this.super.node),
 	
 	/* Function: fn getEnvPath = (..)
 
@@ -147,7 +191,6 @@ struct SkinIOExportRequest (
 	*/
 	fn getZipPath              = ((this.getPath()) + ".zip"),
 
-
 	/* Function: fn getPath = (..)
 
 	   Returns the path for this's without any extension
@@ -160,18 +203,15 @@ struct SkinIOExportRequest (
 	*/
 	fn getFilename = (
 		local ret = this.validate()
-		if ret then (ret = this._super._makeFilenameFromThis())
+		if ret then (ret = this.super._makeFilenameFromThis())
 		ret
 	),
 
-	
-	
-
-	/* Function: fn _loadExportPath path = (..)
+	/* Function: fn setExportPath path = (..)
 
 	   Sets export_path after validating it. 
 	*/
-	fn _loadExportPath path = (
+	fn setExportPath path = (
 		local ret = (classof(path) == String) or path == undefined
 		if ret then (
 			local dp = path
@@ -184,12 +224,104 @@ struct SkinIOExportRequest (
 		)
 		ret
 	),
-	on create do (this._super = SkinIOBaseRequest __child:this)
+
+	fn getExportPath = (this.export_path),
+
+
+	on create do (this.super = SkinIOBaseRequest __child:this)
 )
 
 
 -- Class: SkinIOImportRequest
 -- The import request class
 struct SkinIOImportRequest (
-	on create do ()
+	
+	-- Variable: super
+    -- private - The baseclass, of type <<SkinIOBaseRequest>>, providing common methods for requests
+	super        = undefined,
+
+	private
+	-- Variable: import_path
+    -- private - The importing archive path 
+	import_path  = undefined,
+
+	
+	version      = undefined,
+	filename     = undefined,
+	skinName     = undefined,
+	objectName   = undefined,
+
+	public
+	fn init import_path = (SkinIOReturn ret:(this.setImportPath import_path)),
+	fn setImportPath ip = (
+		local ret = (classof(ip) == String) or ip == undefined
+		if ret then (
+			local dp = ip
+			if dp == undefined then (dp = sysInfo.tempdir)
+			local fexists = doesFileExist dp
+			local isDir   = not (getFileAttribute dp #directory)
+
+			ret = (fexists and isDir)
+			if ret then (
+				this.import_path = dp
+				ret = this.parseFilename()
+			)else(
+				this.import_path = false
+			)
+		)
+		ret
+	),
+	fn validate = (
+		true -- to implement!!!!
+	),
+
+	fn getImportPath    = (this.import_path),
+	fn getImportPathDir = (getFilenamePath this.import_path),
+	fn getIniFilename = (substituteString (this.getImportPath()) ".zip" ".ini" ),
+	fn getEnvFilename = (substituteString (this.getImportPath()) ".zip" ".env" ),
+
+	private
+	fn parseFilename = (
+		local ret = import_path != undefined
+		if ret then (
+			local toks = filterString import_path @"\"
+			ret = toks.count > 0 
+			if ret then (
+				toks = toks[toks.count]
+				local ext = getFilenameType toks
+				if ext == ".zip" then (
+					this.filename = getFilenameFile(toks)
+					local tokens = filterString (this.filename) "_"
+					if tokens.count >=4 then (
+						local oName = ""
+						for i=1 to tokens.count-2 do (
+							oName = oName + tokens[i]
+							if i < (tokens.count-2) then (
+								oName = oName + "_"
+							)
+						)
+
+						this.objectName = oName
+						this.skinName   = tokens[tokens.count-1]
+						this.version    = tokens[tokens.count]
+						--format "ObjName:% SknName:% Version:%\n" this.objectName this.skinName this.version
+						ret = true
+					)
+				)
+			)
+		)
+		ret
+	),
+
+	public
+	fn getVersion = (this.version),   
+	fn getFilename = (this.filename),  
+
+	fn getSkinName = (this.skinName),  
+	fn getObjectName = (this.objectName),
+	on create do (this.super = SkinIOBaseRequest __child:this)
 )
+
+
+--s = SkinIOImportRequest()
+--s.init @"C:\Work\code\3ds\maxscript\tmp\GauvainF04A_Mdl_Hood_Skin_73015321.zip"--

@@ -23,11 +23,19 @@ struct SkinIOHelpers (
 			max modify mode
 			clearSelection()
 			select nd
+			setCommandPanelTaskMode #modify
 			modPanel.setCurrentObject skn
 			ret = true
 		)
 		ret
 	),
+
+	fn prepareCommandPanelToNewSkin nd = (
+		modPanel.setCurrentObject nd.baseObject node:nd ui:true
+		if nd.modifiers[#Morpher] != undefined do modPanel.setCurrentObject nd.Morpher node:nd ui:true
+	),
+
+	fn isDir fp = ((doesFileExist fp) and (getFileAttribute fp #directory)),
 
 	on create do ()
 )

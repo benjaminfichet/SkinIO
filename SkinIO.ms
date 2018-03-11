@@ -11,17 +11,30 @@
 -- Class: SkinIO
 -- The main class to work with.
 struct SkinIO (
+
+	fn export_skin_archive host_node export_path:undefined skin_name:"Skin" = (
+		local req = SkinIOExportRequest()
+		req.init host_node export_path:export_path skin_name:skin_name
+
+		local ret = (req.validate())
+		if ret then (
+			local exporter = SkinIOExport()
+			ret = exporter.export req
+		)
+		ret
+	),
+
+	fn load_skin_archive skin_archive = (
+		local req = SkinIOImportRequest()
+		req.init skin_archive
+
+		(SkinIOImport()).import req
+	),
+
 	on create do ()
 )
 
-
-
-
---export_request = SkinIOExportRequest()-- export_packed:true
---export_request.init $ export_path:@"C:\Work\code\3ds\maxscript\tmp\"--skin_name:"Skina" -- export_path:"MySuperPath"
---if not (export_request.validate()) then (throw "Request is not valid.")
-
---export_request is a valid request, we can work with it.
---exporter = SkinIOExport()
---exporter.export export_request
-
+io = SkinIO()
+io.load_skin_archive @"C:\Work\code\3ds\maxscript\tmp\GauvainF04A_Mdl_Hood_Skin_78003013.zip"
+--io.export_skin_archive $  export_path:@"C:\Work\code\3ds\maxscript\tmp\"
+0
