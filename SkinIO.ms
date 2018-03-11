@@ -1,3 +1,12 @@
+--app.ms
+(
+
+	-- Modolize
+	local modo = Modolize()
+	modo.refresh(getThisScriptFilename())
+	break()
+	
+)
 
 
 
