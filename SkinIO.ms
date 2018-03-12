@@ -8,6 +8,11 @@
 )
 
 
+--m = Modulo()
+--m.init (@"C:\Work\code\3ds\maxscript\SkinIO\SkinIO\")
+--x = m.file_in "SkinIO"
+--x = m.file_in "test"
+
 -- Class: SkinIO
 -- The main class to work with.
 struct SkinIO (
@@ -18,8 +23,7 @@ struct SkinIO (
 
 		local ret = (req.validate())
 		if ret then (
-			local exporter = SkinIOExport()
-			ret = exporter.export req
+			ret = (SkinIOExport()).export req
 		)
 		ret
 	),
@@ -34,7 +38,7 @@ struct SkinIO (
 	on create do ()
 )
 
-io = SkinIO()
-io.load_skin_archive @"C:\Work\code\3ds\maxscript\tmp\GauvainF04A_Mdl_Hood_Skin_78003013.zip"
+skinio = SkinIO()
+--io.load_skin_archive @"C:\Work\code\3ds\maxscript\tmp\GauvainF04A_Mdl_Hood_Skin_78003013.zip"
 --io.export_skin_archive $  export_path:@"C:\Work\code\3ds\maxscript\tmp\"
-0
+--0

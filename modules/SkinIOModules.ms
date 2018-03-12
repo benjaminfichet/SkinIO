@@ -11,7 +11,7 @@ struct SkinIOExport (
 			if ret then (
 				ret = this._outputEnvelopes request
 				if ret then (
-					ret = this._zipExport request
+					ret = this._packArchive request
 				)
 			)
 		)
@@ -58,7 +58,7 @@ struct SkinIOExport (
 		)
 		ret
 	),
-	fn _zipExport request = (
+	fn _packArchive request = (
 		local ret = false
 		local tmp_folder_name = request.getPath()
 		
@@ -86,14 +86,12 @@ struct SkinIOExport (
 -- Class: SkinIOImport
 -- The skin importer 
 struct SkinIOImport (
-	
-	
 
 	private
 	fn pre_import_backup = (
 		true
 	),
-	fn _extract_zip request = (
+	fn _unpackArchive request = (
 		local ret = false
 		try(
 			local z = dotnetclass "System.IO.Compression.ZipFile"
@@ -162,10 +160,16 @@ struct SkinIOImport (
 			dialogMonitorOps.enabled = false
 
 			-- Cleanup files
-			deleteFile (request.getIniFilename())--print (request.getIniFilename())
-			deleteFile (request.getEnvFilename())--print (request.getEnvFilename())
+			this._cleanup()
 		)
 		ret
+	),
+
+	fn _cleanup = (
+		try(
+			deleteFile (request.getIniFilename())--print (request.getIniFilename())
+			deleteFile (request.getEnvFilename())--print (request.getEnvFilename())
+		)catch()
 	),
 
 	public
@@ -173,7 +177,7 @@ struct SkinIOImport (
 		local ret = (iskindof request SkinIOImportRequest) and (request.validate()) -- SkinIOExport works with a SkinIOExportRequest
 		if ret then (
 			if (pre_import_backup() == true) or (no_bk == true) then (
-				local didExtract = this._extract_zip(request) 
+				local didExtract = this._unpackArchive(request) 
 				if didExtract then (
 					--print "extracted!"
 					local hostNode = this._loadHostNode request
@@ -181,6 +185,7 @@ struct SkinIOImport (
 						format "Loading skin on host: %\n" hostNode.name
 						ret = this._importSkin hostNode request
 					)
+					this._cleanup()
 				)
 			)
 		)
