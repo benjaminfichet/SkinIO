@@ -8,7 +8,7 @@
 
 <body onload="NDLoader.OnLoad('Content');" class="NDPage NDContentPage">
 
-<a name="Topic5"></a><div class="CTopic TClass LMaxscript first">
+<a name="Topic10"></a><div class="CTopic TClass LMaxscript first">
  <div class="CTitle">SkinIOExportRequest</div>
  <div class="CBody"><p>The export request class</p></div>
 </div>
@@ -17,8 +17,8 @@
  <div class="CTitle">Variables</div>
 </div>
 
-<a name="_super"></a><a name="Topic24"></a><div class="CTopic TVariable LMaxscript">
- <div class="CTitle">_super</div>
+<a name="super"></a><a name="Topic12"></a><div class="CTopic TVariable LMaxscript">
+ <div class="CTitle">super</div>
  <div class="CBody"><table class="CDefinitionList"><tr><td class="CDLEntry">private</td><td class="CDLDefinition"><p>The baseclass, of type &lt;&lt;SkinIOBaseRequest&gt;&gt;, providing common methods for requests</p></td></tr></table></div>
 </div>
 
@@ -32,57 +32,57 @@
  <div class="CBody"><table class="CDefinitionList"><tr><td class="CDLEntry">deprecated</td><td class="CDLDefinition"><p>Do we pack our export</p></td></tr></table></div>
 </div>
 
-<a name="Functions"></a><a name="Topic4"></a><div class="CTopic TGroup LMaxscript">
+<a name="Functions"></a><a name="Topic16"></a><div class="CTopic TGroup LMaxscript">
  <div class="CTitle">Functions</div>
 </div>
 
-<a name="fn_init_node_skin_name_undefined_export_path_undefined="></a><a name="Topic22"></a><div class="CTopic TFunction LMaxscript">
+<a name="fn_init_node_skin_name_undefined_export_path_undefined="></a><a name="Topic17"></a><div class="CTopic TFunction LMaxscript">
  <div class="CTitle"><span class="Qualifier">fn init node skin_name:undefined export_path:undefined = (.&#8203;.</span>&#8203;)</div>
  <div class="CBody"><p>Inits a request. The only required parameter is a node. You can also pass the &lt;&lt;skin_name:&gt;&gt; and &lt;&lt;export_path:&gt;&gt; parameters.</p><div class="CHeading">Parameters</div><ul><li><p>node&nbsp; The node to load a skinh modifier from</p></li><li><p>skin_name: If given we will select this skin modifier</p></li><li><p>export_path: If given this is the directory where we will export our skin to</p></li></ul><div class="CHeading">Return</div><p>True or False</p></div>
 </div>
 
-<a name="fn_validate="></a><a name="Topic12"></a><div class="CTopic TFunction LMaxscript">
+<a name="fn_validate="></a><a name="Topic18"></a><div class="CTopic TFunction LMaxscript">
  <div class="CTitle"><span class="Qualifier">fn validate = (.&#8203;.</span>&#8203;)</div>
- <div class="CBody"><p>Validates this request by using the _super validator. Checks that :</p><ul><li><p>the node is valid</p></li><li><p>the skin is valid</p></li><li><p>the skin is holded by the same node</p></li></ul><div class="CHeading">Return</div><p>True or False</p></div>
+ <div class="CBody"><p>Validates this request by using the super validator. Checks that :</p><ul><li><p>the node is valid</p></li><li><p>the skin is valid</p></li><li><p>the skin is holded by the same node</p></li></ul><div class="CHeading">Return</div><p>True or False</p></div>
 </div>
 
-<a name="fn_getSkinMod="></a><a name="Topic23"></a><div class="CTopic TFunction LMaxscript">
+<a name="fn_getSkinMod="></a><a name="Topic22"></a><div class="CTopic TFunction LMaxscript">
  <div class="CTitle"><span class="Qualifier">fn getSkinMod = (.&#8203;.</span>&#8203;)</div>
  <div class="CBody"><p>Returns the Skin modifier associated with this request.</p></div>
 </div>
 
-<a name="fn_getNode="></a><a name="Topic27"></a><div class="CTopic TFunction LMaxscript">
+<a name="fn_getNode="></a><a name="Topic23"></a><div class="CTopic TFunction LMaxscript">
  <div class="CTitle"><span class="Qualifier">fn getNode = (.&#8203;.</span>&#8203;)</div>
  <div class="CBody"><p>Returns the Node associated with this request.</p></div>
 </div>
 
-<a name="fn_getEnvPath="></a><a name="Topic28"></a><div class="CTopic TFunction LMaxscript">
+<a name="fn_getEnvPath="></a><a name="Topic24"></a><div class="CTopic TFunction LMaxscript">
  <div class="CTitle"><span class="Qualifier">fn getEnvPath = (.&#8203;.</span>&#8203;)</div>
  <div class="CBody"><p>Returns the path for this's env file</p></div>
 </div>
 
-<a name="fn_getIniPath="></a><a name="Topic29"></a><div class="CTopic TFunction LMaxscript">
+<a name="fn_getIniPath="></a><a name="Topic27"></a><div class="CTopic TFunction LMaxscript">
  <div class="CTitle"><span class="Qualifier">fn getIniPath = (.&#8203;.</span>&#8203;)</div>
  <div class="CBody"><p>Returns the path for this's ini file</p></div>
 </div>
 
-<a name="fn_getZipPath="></a><a name="Topic30"></a><div class="CTopic TFunction LMaxscript">
+<a name="fn_getZipPath="></a><a name="Topic28"></a><div class="CTopic TFunction LMaxscript">
  <div class="CTitle"><span class="Qualifier">fn getZipPath = (.&#8203;.</span>&#8203;)</div>
  <div class="CBody"><p>Returns the path for this's zip file</p></div>
 </div>
 
-<a name="fn_getPath="></a><a name="Topic18"></a><div class="CTopic TFunction LMaxscript">
+<a name="fn_getPath="></a><a name="Topic29"></a><div class="CTopic TFunction LMaxscript">
  <div class="CTitle"><span class="Qualifier">fn getPath = (.&#8203;.</span>&#8203;)</div>
  <div class="CBody"><p>Returns the path for this's without any extension</p></div>
 </div>
 
-<a name="fn_getFilename="></a><a name="Topic16"></a><div class="CTopic TFunction LMaxscript">
+<a name="fn_getFilename="></a><a name="Topic30"></a><div class="CTopic TFunction LMaxscript">
  <div class="CTitle"><span class="Qualifier">fn getFilename = (.&#8203;.</span>&#8203;)</div>
  <div class="CBody"><p>Returns the filename created for this request</p></div>
 </div>
 
-<a name="fn_loadExportPath_path="></a><a name="Topic17"></a><div class="CTopic TFunction LMaxscript last">
- <div class="CTitle"><span class="Qualifier">fn _loadExportPath path = (.&#8203;.</span>&#8203;)</div>
+<a name="fn_setExportPath_path="></a><a name="Topic32"></a><div class="CTopic TFunction LMaxscript last">
+ <div class="CTitle"><span class="Qualifier">fn setExportPath path = (.&#8203;.</span>&#8203;)</div>
  <div class="CBody"><p>Sets export_path after validating it.</p></div>
 </div>
 

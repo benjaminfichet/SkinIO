@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("sup",["Variable"],[["super",,[["SkinIOExportRequest",,,,0,"File:modules/SkinIORequests.ms:SkinIOExportRequest.super","MaxscriptClass:SkinIOExportRequest:super"],["SkinIOImportRequest",,,,0,"File:modules/SkinIORequests.ms:SkinIOImportRequest.super","MaxscriptClass:SkinIOImportRequest:super"]]]]);

@@ -160,12 +160,11 @@ struct SkinIOImport (
 			dialogMonitorOps.enabled = false
 
 			-- Cleanup files
-			this._cleanup()
+			this._deleteSkinFiles()
 		)
 		ret
 	),
-
-	fn _cleanup = (
+	fn _deleteSkinFiles = (
 		try(
 			deleteFile (request.getIniFilename())--print (request.getIniFilename())
 			deleteFile (request.getEnvFilename())--print (request.getEnvFilename())
@@ -185,7 +184,7 @@ struct SkinIOImport (
 						format "Loading skin on host: %\n" hostNode.name
 						ret = this._importSkin hostNode request
 					)
-					this._cleanup()
+					this._deleteSkinFiles()
 				)
 			)
 		)

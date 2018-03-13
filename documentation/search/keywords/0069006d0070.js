@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("imp",["Variable"],[["import_path",,[["SkinIOImportRequest",,,,0,"File:modules/SkinIORequests.ms:SkinIOImportRequest.import_path","MaxscriptClass:SkinIOImportRequest:import_path"]]]]);

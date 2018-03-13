@@ -1,1 +1,1 @@
-NDSearch.OnPrefixDataLoaded("sel",["Function"],[["selectSkinmod",,[["SkinIOHelpers",,,,0,"File:SkinIO.ms:SkinIOHelpers.selectSkinmod","MaxscriptClass:SkinIOHelpers:selectSkinmod"]]]]);
+NDSearch.OnPrefixDataLoaded("sel",["Function"],[["selectSkinmod",,[["SkinIOHelpers",,,,0,"File:modules/SkinIOHelpers.ms:SkinIOHelpers.selectSkinmod","MaxscriptClass:SkinIOHelpers:selectSkinmod"]]]]);

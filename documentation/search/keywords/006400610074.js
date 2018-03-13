@@ -1,1 +1,1 @@
-NDSearch.OnPrefixDataLoaded("dat",["Variable"],[["data",,[["SkinIOReturn",,,,0,"File:SkinIOReturn.ms:SkinIOReturn.data","MaxscriptClass:SkinIOReturn:data"]]]]);
+NDSearch.OnPrefixDataLoaded("dat",["Variable"],[["data",,[["SkinIOReturn",,,,0,"File:modules/SkinIOReturn.ms:SkinIOReturn.data","MaxscriptClass:SkinIOReturn:data"]]]]);

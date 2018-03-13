@@ -1,0 +1,1 @@
+NDFramePage.OnPageTitleLoaded("File:modules/SkinIOHelpers.ms","SkinIOHelpers.ms");NDSummary.OnSummaryLoaded("File:modules/SkinIOHelpers.ms",[["Maxscript","Maxscript"]],[["Classes","Class"],["Functions","Function"],["Groups","Group"]],[[37,0,0,"SkinIOHelpers","SkinIOHelpers"],[38,0,2,"Functions","SkinIOHelpers.Functions"],[39,0,1,"selectSkinmod","SkinIOHelpers.selectSkinmod"]]);

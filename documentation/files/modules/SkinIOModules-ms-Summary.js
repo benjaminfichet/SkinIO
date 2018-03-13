@@ -1,0 +1,1 @@
+NDFramePage.OnPageTitleLoaded("File:modules/SkinIOModules.ms","SkinIOModules.ms");NDSummary.OnSummaryLoaded("File:modules/SkinIOModules.ms",[["Maxscript","Maxscript"]],[["Classes","Class"]],[[15,0,0,"SkinIOExport","SkinIOExport"],[19,0,0,"SkinIOImport","SkinIOImport"]]);

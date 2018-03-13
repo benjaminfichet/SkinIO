@@ -35,10 +35,28 @@ struct SkinIO (
 		(SkinIOImport()).import req
 	),
 
+
+	fn reload_skin host_node skin_name:"Skin" = (
+		local xpt_req = SkinIOExportRequest()
+		xpt_req.init host_node skin_name:skin_name
+
+		if (xpt_req.validate()) then (
+			if ((SkinIOExport()).export xpt_req) then (
+
+				-- We did export successfully, now import
+				local imp_req = SkinIOImportRequest()
+				imp_req.init (xpt_req.getZipPath())
+
+				return ((SkinIOImport()).import imp_req)
+			)
+		)
+	),
+
+
 	on create do ()
 )
 
-skinio = SkinIO()
---io.load_skin_archive @"C:\Work\code\3ds\maxscript\tmp\GauvainF04A_Mdl_Hood_Skin_78003013.zip"
---io.export_skin_archive $  export_path:@"C:\Work\code\3ds\maxscript\tmp\"
---0
+sio = SkinIO()
+--sio.load_skin_archive @"C:\Work\code\3ds\maxscript\tmp\GauvainF04A_Mdl_Hood_Skin_78003013.zip"
+--sio.export_skin_archive $  export_path:@"C:\Work\code\3ds\maxscript\tmp\"
+--sio.reload_skin $

@@ -8,9 +8,42 @@
 
 <body onload="NDLoader.OnLoad('Content');" class="NDPage NDContentPage">
 
-<a name="Topic10"></a><div class="CTopic TClass LMaxscript first">
+<a name="Topic1"></a><div class="CTopic TClass LMaxscript first">
  <div class="CTitle">SkinIOBaseRequest</div>
  <div class="CBody"><p>The base class for the Input/Output requests. Do not instantiate.</p></div>
+</div>
+
+<a name="Variables"></a><a name="Topic2"></a><div class="CTopic TGroup LMaxscript">
+ <div class="CTitle">Variables</div>
+</div>
+
+<a name="node"></a><a name="Topic3"></a><div class="CTopic TVariable LMaxscript">
+ <div class="CTitle">node</div>
+ <div class="CBody"><table class="CDefinitionList"><tr><td class="CDLEntry">public</td><td class="CDLDefinition"><p>The node associated with the request</p></td></tr></table></div>
+</div>
+
+<a name="skinmod"></a><a name="Topic4"></a><div class="CTopic TVariable LMaxscript">
+ <div class="CTitle">skinmod</div>
+ <div class="CBody"><table class="CDefinitionList"><tr><td class="CDLEntry">public</td><td class="CDLDefinition"><p>The skin modifier associated with the request</p></td></tr></table></div>
+</div>
+
+<a name="Functions"></a><a name="Topic5"></a><div class="CTopic TGroup LMaxscript">
+ <div class="CTitle">Functions</div>
+</div>
+
+<a name="fn_validate="></a><a name="Topic6"></a><div class="CTopic TFunction LMaxscript">
+ <div class="CTitle"><span class="Qualifier">fn validate = (.&#8203;.</span>&#8203;)</div>
+ <div class="CBody"><p>Validates this request by using the super validator. Checks that :</p><ul><li><p>the node is valid</p></li><li><p>the skin is valid</p></li><li><p>the skin is holded by the same node</p></li></ul><div class="CHeading">Return</div><p>True or False</p></div>
+</div>
+
+<a name="fn_loadSkinMod_skin_name_undefined="></a><a name="Topic7"></a><div class="CTopic TFunction LMaxscript">
+ <div class="CTitle"><span class="Qualifier">fn _loadSkinMod skin_name:undefined = (.&#8203;.</span>&#8203;)</div>
+ <div class="CBody"><p>Loads this.skinmod with node.modifiers[skin_name] if skin_name: is given else with node.modifiers[#Skin]</p><div class="CHeading">Return</div><p>True or False</p></div>
+</div>
+
+<a name="fn_makeFilenameFromThis="></a><a name="Topic8"></a><div class="CTopic TFunction LMaxscript last">
+ <div class="CTitle"><span class="Qualifier">fn _makeFilenameFromThis = (.&#8203;.</span>&#8203;)</div>
+ <div class="CBody"><p>Makes a filename for the giver node, skin modifier, and registered timestamp.</p><div class="CHeading">Return</div><p>False or Filename</p></div>
 </div>
 
 </body></html>
