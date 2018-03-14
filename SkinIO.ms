@@ -11,7 +11,8 @@
 --m = Modulo()
 --m.init (@"C:\Work\code\3ds\maxscript\SkinIO\SkinIO\")
 --x = m.file_in "SkinIO"
---x = m.file_in "test"
+--x = m.file_in "moduletest.test"
+
 
 -- Class: SkinIO
 -- The main class to work with.
@@ -28,7 +29,7 @@ struct SkinIO (
 		ret
 	),
 
-	fn load_skin_archive skin_archive = (
+	fn import_skin_archive skin_archive = (
 		local req = SkinIOImportRequest()
 		req.init skin_archive
 
@@ -57,6 +58,6 @@ struct SkinIO (
 )
 
 sio = SkinIO()
---sio.load_skin_archive @"C:\Work\code\3ds\maxscript\tmp\GauvainF04A_Mdl_Hood_Skin_78003013.zip"
+--sio.import_skin_archive @"C:\Work\code\3ds\maxscript\tmp\GauvainF04A_Mdl_Hood_Skin_78003013.zip"
 --sio.export_skin_archive $  export_path:@"C:\Work\code\3ds\maxscript\tmp\"
 --sio.reload_skin $
