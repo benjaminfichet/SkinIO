@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("_de",["Function"],[["_deleteSkinFiles",,[["SkinIOImport","fn _deleteSkinFiles =",,"fn _deleteskinfiles=",0,"File:modules/SkinIOModules.ms:SkinIOImport.fn_deleteSkinFiles=","MaxscriptClass:SkinIOImport:fn_deleteSkinFiles="]]]]);

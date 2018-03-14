@@ -20,6 +20,15 @@ struct SkinIOExport (
 
 
 	private
+
+	/* Function: fn _outputBoneList request = (..)
+
+	   Private - Outputs the bones list ini file for the given request.
+
+	   	Return:
+
+	   		True or False
+	*/
 	fn _outputBoneList request = (
 		local ret = false -- ReturnCode ret:false reason:("Unable to output bone list! (" + (request.getFilename()) + ")")	
 		local sknMod = (request.getSkinMod())
@@ -43,6 +52,16 @@ struct SkinIOExport (
 		)
 		ret
 	),
+
+
+	/* Function: fn _outputEnvelopes request ascii:false = (..)
+
+	   Private - Outputs enveloppes file for the given request.. .env
+
+	   	Return:
+
+	   		True or False
+	*/
 	fn _outputEnvelopes request ascii:false = (
 		local ret = false -- ReturnCode ret:false reason:("Unable to output envelopes! (" + (pub.getEnvelopesFilepath()) + ")")	
 		
@@ -58,6 +77,15 @@ struct SkinIOExport (
 		)
 		ret
 	),
+
+	/* Function: fn _packArchive request = (..)
+
+	   Private - Packs the .env and .ini files to a .zip
+
+	   	Return:
+
+	   		True or False
+	*/
 	fn _packArchive request = (
 		local ret = false
 		local tmp_folder_name = request.getPath()
@@ -88,9 +116,28 @@ struct SkinIOExport (
 struct SkinIOImport (
 
 	private
+
+	/* Function: fn pre_import_backup = (..)
+
+	   TO IMPLEMENT ! Performs a backup before importing the skin.
+
+	   	Return:
+
+	   		True or False
+	*/
 	fn pre_import_backup = (
 		true
 	),
+
+
+	/* Function: fn _unpackArchive request = (..)
+
+	   Private - Unpacks the archive for the given request
+
+	   	Return:
+
+	   		True or False
+	*/
 	fn _unpackArchive request = (
 		local ret = false
 		try(
@@ -101,16 +148,36 @@ struct SkinIOImport (
 		catch(ret = false)
 		ret
 	),
+
+
+	/* Function: fn _loadHostNode request = (..)
+
+	   Private - Loads the node that will host the imported skin from the request object
+
+	   	Return:
+
+	   		Node or False
+	*/
 	fn _loadHostNode request = (
 		local ret = false
 		local nds = for i in objects where MatchPattern i.name pattern:("*_"+request.getObjectName()) collect i
 		if nds.count > 0 then (ret = nds[1])
 		ret
 	),
+
+
+	/* Function: fn _importSkin host request = (..)
+
+	   Private - Imports the new skin! Creates the modifier, loads the bones and the enveloppes.
+
+	   	Return:
+
+	   		True or False
+	*/
 	fn _importSkin host request = (
 
-		local envFile = request.getEnvFilename()
-		local iniFile = request.getIniFilename()
+		local envFile  = request.getEnvFilename()
+		local iniFile  = request.getIniFilename()
 		local skinName = request.getSkinName()
 
 		local ret = (doesFileExist envFile) and (doesFileExist iniFile) and (isValidNode host)
@@ -164,6 +231,15 @@ struct SkinIOImport (
 		)
 		ret
 	),
+
+	/* Function: fn _deleteSkinFiles = (..)
+
+	   Private - Tries to delete the unpacked files
+
+	   	Return:
+
+	   		void
+	*/
 	fn _deleteSkinFiles = (
 		try(
 			deleteFile (request.getIniFilename())--print (request.getIniFilename())
@@ -172,6 +248,15 @@ struct SkinIOImport (
 	),
 
 	public
+
+	/* Function: fn import request no_bk:false = (..)
+
+	   Imports the skin for the given request
+
+	   	Return:
+
+	   		True or False
+	*/
 	fn import request no_bk:false = (
 		local ret = (iskindof request SkinIOImportRequest) and (request.validate()) -- SkinIOExport works with a SkinIOExportRequest
 		if ret then (
