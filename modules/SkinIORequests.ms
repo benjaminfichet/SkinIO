@@ -112,11 +112,15 @@ struct SkinIOExportRequest (
     -- public - Where we will export our Skin
 	export_path   = undefined,
 
+
+	-- Variable: ascii
+    -- public - Do we export our skin in ascii format ?
+	ascii         = false,
+
+
 	-- Variable: export_packed
     -- deprecated - Do we pack our export ?
 	export_packed = undefined,
-
-
 
 
 	public
@@ -133,11 +137,12 @@ struct SkinIOExportRequest (
 		Return:
 			True or False
 	*/
-	fn init node skin_name:undefined export_path:undefined = (
+	fn init node skin_name:undefined export_path:undefined ascii:false = (
 		local ret = SkinIOReturn ret:(isValidNode node)
 		if ret.ret then (
 
 			this.super.node = node
+			this.ascii = ascii
 			
 			ret = this.super._loadSkinMod skin_name:skin_name
 			if ret then (
@@ -252,7 +257,7 @@ struct SkinIOImportRequest (
 	objectName   = undefined,
 
 	public
-	fn init import_path = (SkinIOReturn ret:(this.setImportPath import_path)),
+	fn init import_path		 = (SkinIOReturn ret:(this.setImportPath import_path)),
 	fn setImportPath ip = (
 		local ret = (classof(ip) == String) or ip == undefined
 		if ret then (
@@ -276,9 +281,10 @@ struct SkinIOImportRequest (
 	),
 
 	fn getImportPath    = (this.import_path),
-	fn getImportPathDir = (getFilenamePath this.import_path),
-	fn getIniFilename = (substituteString (this.getImportPath()) ".zip" ".ini" ),
-	fn getEnvFilename = (substituteString (this.getImportPath()) ".zip" ".env" ),
+	fn getImportPathDir = (getFilenamePath  (this.getImportPath())),
+	fn getIniFilename   = (substituteString (this.getImportPath()) ".zip" ".ini" ),
+	fn getEnvFilename   = (substituteString (this.getImportPath()) ".zip" ".env" ),
+
 
 	private
 	fn parseFilename = (
@@ -301,7 +307,7 @@ struct SkinIOImportRequest (
 							)
 						)
 
-						this.objectName = oName
+						if this.objectName == undefined then (this.objectName = oName)
 						this.skinName   = tokens[tokens.count-1]
 						this.version    = tokens[tokens.count]
 						--format "ObjName:% SknName:% Version:%\n" this.objectName this.skinName this.version

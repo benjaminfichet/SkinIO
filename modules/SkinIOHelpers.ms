@@ -30,6 +30,19 @@ struct SkinIOHelpers (
 		ret
 	),
 
+	/* Function: fn prepareCommandPanelToNewSkin nd = ()
+
+	   Prepares the command panel to the creation of a new skin modifier for the given <<nd>> by selecting the baseobject.
+	   If a #Morpher is present on the node, the morpher will be selected as the baseobject.
+
+	   Parameters:
+
+	    	nd - The node to host a new skin.
+
+	   Returns:
+
+	    	void
+	*/
 	fn prepareCommandPanelToNewSkin nd = (
 		modPanel.setCurrentObject nd.baseObject node:nd ui:true
 		if nd.modifiers[#Morpher] != undefined do modPanel.setCurrentObject nd.Morpher node:nd ui:true

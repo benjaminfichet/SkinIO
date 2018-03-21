@@ -9,7 +9,7 @@ struct SkinIOExport (
 			--print ("Ready to export to : ("+request.getExportPath() + request.getFilename() +")")
 			ret = this._outputBoneList request
 			if ret then (
-				ret = this._outputEnvelopes request
+				ret = this._outputEnvelopes request 
 				if ret then (
 					ret = this._packArchive request
 				)
@@ -62,7 +62,7 @@ struct SkinIOExport (
 
 	   		True or False
 	*/
-	fn _outputEnvelopes request ascii:false = (
+	fn _outputEnvelopes request = (
 		local ret = false -- ReturnCode ret:false reason:("Unable to output envelopes! (" + (pub.getEnvelopesFilepath()) + ")")	
 		
 		-- select skin..
