@@ -47,6 +47,9 @@ struct SkinIO (
 				local imp_req = SkinIOImportRequest()
 				imp_req.init (xpt_req.getZipPath())
 
+				-- Delete old skin
+
+
 				return ((SkinIOImport()).import imp_req)
 			)
 		)
@@ -55,7 +58,7 @@ struct SkinIO (
 	on create do ()
 )
 
-sio = SkinIO()
+--sio = SkinIO()
 --sio.import_skin_archive @"C:\Work\code\3ds\maxscript\tmp\GauvainF04A_Mdl_Hood_Skin_78003013.zip"
-sio.export_skin_archive $  export_path:@"C:\Work\code\3ds\maxscript\tmp\" ascii:true
---sio.reload_skin $
+--sio.export_skin_archive $  export_path:@"C:\Work\code\3ds\maxscript\tmp\" ascii:true
+--sio.reload_skin $ skin_name:"Skin"
