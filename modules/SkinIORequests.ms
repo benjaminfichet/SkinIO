@@ -123,6 +123,13 @@ struct SkinIOExportRequest (
 	export_packed = undefined,
 
 
+
+	-- Variable: packed_extension
+    -- the packed file extension
+	--packed_extension = undefined,
+
+
+
 	public
 	/* Function: fn init node skin_name:undefined export_path:undefined = (..)
 
@@ -137,12 +144,13 @@ struct SkinIOExportRequest (
 		Return:
 			True or False
 	*/
-	fn init node skin_name:undefined export_path:undefined ascii:false = (
+	fn init node skin_name:undefined export_path:undefined ascii:false packed_extension:".zip" = (
 		local ret = SkinIOReturn ret:(isValidNode node)
 		if ret.ret then (
 
 			this.super.node = node
 			this.ascii = ascii
+			this.super.__packed_extension = packed_extension
 			
 			ret = this.super._loadSkinMod skin_name:skin_name
 			if ret then (
