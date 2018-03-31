@@ -74,7 +74,7 @@ struct SkinIOBaseRequest (
 		-- Object's name cut
 		local splt_dash = filterString this.node.name "_"
 		if splt_dash.count >= 2 then (
-			fname = splt_dash[2]
+			fname = splt_dash[1] + "_" + splt_dash[2]
 			for i=3 to splt_dash.count do (
 				if i <= splt_dash.count do (fname=fname+"_")
 				fname = fname + splt_dash[i]
@@ -121,12 +121,6 @@ struct SkinIOExportRequest (
 	-- Variable: export_packed
     -- deprecated - Do we pack our export ?
 	export_packed = undefined,
-
-
-
-	-- Variable: packed_extension
-    -- the packed file extension
-	--packed_extension = undefined,
 
 
 

@@ -58,7 +58,7 @@ struct SkinIO (
 	on create do ()
 )
 
---sio = SkinIO()
+sio = SkinIO()
 --sio.import_skin_archive @"C:\Work\code\3ds\maxscript\tmp\GauvainF04A_Mdl_Hood_Skin_78003013.zip"
---sio.export_skin_archive $  export_path:@"C:\Work\code\3ds\maxscript\tmp\" ascii:true
+sio.export_skin_archive $ export_path:@"C:\Work\code\3ds\maxscript\UMS\datastore\"-- ascii:true
 --sio.reload_skin $ skin_name:"Skin"
