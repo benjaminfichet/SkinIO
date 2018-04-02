@@ -1,4 +1,3 @@
---fileins
 (
 	local thisdir = (getFilenamePath(getThisScriptFilename()))
 	filein (thisdir + @"modules/SkinIOReturn.ms")
@@ -6,13 +5,6 @@
 	filein (thisdir + @"modules/SkinIORequests.ms")
 	filein (thisdir + @"modules/SkinIOModules.ms")
 )
-
-
---m = Modulo()
---m.init (@"C:\Work\code\3ds\maxscript\SkinIO\SkinIO\")
---x = m.file_in "SkinIO"
---x = m.file_in "moduletest.test"
-
 
 -- Class: SkinIO
 -- The main class to work with.
@@ -58,7 +50,8 @@ struct SkinIO (
 	on create do ()
 )
 
-sio = SkinIO()
---sio.import_skin_archive @"C:\Work\code\3ds\maxscript\tmp\GauvainF04A_Mdl_Hood_Skin_78003013.zip"
-sio.export_skin_archive $ export_path:@"C:\Work\code\3ds\maxscript\UMS\datastore\"-- ascii:true
---sio.reload_skin $ skin_name:"Skin"
+-- Instantiate a SkinIO object
+-- sio = SkinIO()
+-- sio.export_skin_archive $Ch_XXXX_Mdl_XXXX export_path:@"C:\Work\code\3ds\maxscript\UMS\datastore\" -- ascii:true
+-- sio.import_skin_archive @"C:\Work\code\3ds\maxscript\tmp\Ch_XXXX_Mdl_XXXX_Skin_78003013.zip"
+-- sio.reload_skin $Ch_XXXX_Mdl_XXXX skin_name:"Skin"
